@@ -4,6 +4,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 public class StatisticsServiceTest {
+    @Test
+    void findMaxWhenCurrentMaxDoesNotChange() {
+        StatisticsService service = new StatisticsService();
+
+        long[] incomesInBillions = {12, 12, 12, 12, 12};
+        long expected = 12;
+
+        long actual = service.findMax(incomesInBillions);
+
+        Assertions.assertEquals(expected, actual);
+    }
 
     @Test
     void findMax() {
@@ -51,5 +62,7 @@ public class StatisticsServiceTest {
         long actual = service.findMax(incomes);
 
         Assertions.assertEquals(expected, actual);
+
+
     }
 }
