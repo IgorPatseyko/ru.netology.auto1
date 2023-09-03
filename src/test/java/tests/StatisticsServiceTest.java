@@ -1,21 +1,10 @@
 package ru.netology.statistic;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StatisticsServiceTest {
-    @Test
-    void findMaxWhenCurrentMaxDoesNotChange() {
-        StatisticsService service = new StatisticsService();
-
-        long[] incomesInBillions = {12, 12, 12, 12, 12};
-        long expected = 12;
-
-        long actual = service.findMax(incomesInBillions);
-
-        Assertions.assertEquals(expected, actual);
-    }
-
     @Test
     void findMax() {
         StatisticsService service = new StatisticsService();
@@ -25,44 +14,44 @@ public class StatisticsServiceTest {
 
         long actual = service.findMax(incomesInBillions);
 
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
-    void findMaxWithSingleValue() {
+    void findMaxIfMaxNotFirst() {
         StatisticsService service = new StatisticsService();
 
-        long[] incomes = {5};
-        long expected = 5;
+        long[] incomesInBillions = {12, 5, 8, 4, 14, 3, 8, 6, 11, 11, 12};
+        long expected = 14;
 
-        long actual = service.findMax(incomes);
+        long actual = service.findMax(incomesInBillions);
 
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual);
     }
 
     @Test
-    void findMaxWithDescendingValues() {
+    void findMaxWithUpdatedCurrentMax() {
         StatisticsService service = new StatisticsService();
 
-        long[] incomes = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
-        long expected = 10;
+        long[] incomes = {12, 5, 8, 4, 14, 3, 8, 6, 11, 11, 12};
+        long expectedMax = 14;
 
-        long actual = service.findMax(incomes);
+        long actualMax = service.findMax(incomes);
 
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expectedMax, actualMax);
     }
 
     @Test
-    void findMaxWithEqualValues() {
+    void findMaxWithUpdatedCurrentMax2() {
         StatisticsService service = new StatisticsService();
 
-        long[] incomes = {7, 7, 7, 7, 7};
-        long expected = 7;
+        long[] incomes = {14};
+        long expectedMax = 14;
 
-        long actual = service.findMax(incomes);
+        long actualMax = service.findMax(incomes);
 
-        Assertions.assertEquals(expected, actual);
-
-
+        assertEquals(expectedMax, actualMax);
     }
+
+
 }
